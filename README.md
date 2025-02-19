@@ -1,11 +1,11 @@
-# Optimizely Campaign - Shopware 6 Plugin - Coming Soon
+# Optimizely Campaign - Shopware 5 Plugin - Coming Soon
 
-## ✨ Coming Soon - Shopware 6 Plugin
+## ✨ Coming Soon - Shopware 5 Plugin
 
 This plugin is still in development and will be released on **May 1, 2025**. Stay tuned!
 
 ## 👀 What to Expect?
-- A powerful and useful feature for your Shopware 6 store
+- A powerful and useful feature for your Shopware 5 store
 - Easy installation and configuration
 - Optimized for performance and compatibility
 
