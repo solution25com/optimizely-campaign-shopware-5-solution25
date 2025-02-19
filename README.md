@@ -1,7 +1,7 @@
 # Optimizely Campaign - Shopware 5 Plugin - Coming Soon
 
 ## ✨ Coming Soon - Shopware 5 Plugin
-Enhance your email marketing with Optimizely Campaign for Shopware 5. Sync customer data, automate product exports, track user activity, and manage transactional emails seamlessly.  
+Enhance your email marketing with Optimizely Campaign for Shopware 5. Sync customer data, automate product exports, track user activity, and manage transactional emails.  
 
 ## 🚀 Why Use Optimizely Campaign?  
 - **Effortless Newsletter Sync** – Keep subscriber lists always up to date.  
