@@ -1,0 +1,113 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <parameters>
+        <parameter type="string" key="optivo_broadmail.max_retry_count">5</parameter>
+        <parameter type="string" key="optivo_broadmail.error_email_to_name">Episerver Technical Support</parameter>
+        <parameter type="string" key="optivo_broadmail.error_email_address">partner-de@episerver.com</parameter>
+        <parameter type="string" key="optivo_broadmail.error_email_subject">Problem with Episerver Campaign HTTP-API Call</parameter>
+    </parameters>
+    <services>
+        <!-- API Service -->
+        <service id="optivo_broadmail.api" class="OptivoBroadmail\Components\BroadmailAPI" public="true">
+            <argument type="service" id="optivo_broadmail.logger" />
+            <argument type="service" id="models" />
+        </service>
+
+        <service id="optivo_broadmail.subscriber_service" class="OptivoBroadmail\Service\NewsletterSubscriberService" public="true">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="optivo_broadmail.logger" />
+            <argument type="service" id="optivo_broadmail.api" />
+        </service>
+
+        <!-- Backend Subscriber -->
+        <service id="optivo_broadmail.subscriber.backend" class="OptivoBroadmail\Subscriber\BackendSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="optivo_broadmail.logger" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!-- Frontend Subscriber -->
+        <service id="optivo_broadmail.subscriber.frontend" class="OptivoBroadmail\Subscriber\FrontendSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="optivo_broadmail.logger" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!-- Newsletter Subscriber -->
+        <service id="optivo_broadmail.subscriber.newsletter" class="OptivoBroadmail\Subscriber\NewsletterSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="optivo_broadmail.logger" />
+            <argument type="service" id="optivo_broadmail.subscriber_service" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!-- Customer Subscriber -->
+        <service id="optivo_broadmail.subscriber.customer" class="OptivoBroadmail\Subscriber\CustomerSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="optivo_broadmail.logger" />
+            <argument type="service" id="optivo_broadmail.subscriber_service" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!-- Address Subscriber -->
+        <service id="optivo_broadmail.subscriber.address" class="OptivoBroadmail\Subscriber\AddressSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="optivo_broadmail.logger" />
+            <argument type="service" id="optivo_broadmail.subscriber_service" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!-- Cron Jobs Subscriber -->
+        <service id="optivo_broadmail.subscriber.cronjobs" class="OptivoBroadmail\Subscriber\CronJobsSubscriber">
+            <argument type="service" id="service_container" />
+            <argument type="service" id="optivo_broadmail.logger" />
+            <argument type="service" id="optivo_broadmail.api" />
+            <tag name="shopware.event_subscriber" />
+        </service>
+
+        <!-- this service decorates shopware's address_service to transfer
+             added or changed address data to Episerver Campaign -->
+        <service id="optivo_broadmail.epi_address_service"
+                 class="OptivoBroadmail\Components\EpiAddressService"
+                 decorates="shopware_account.address_service"
+                 public="false">
+                 <argument type="service" id="optivo_broadmail.epi_address_service.inner"/>
+                 <argument type="service" id="optivo_broadmail.api"/>
+                 <argument type="service" id="optivo_broadmail.logger"/>
+        </service>
+        <!-- Template Mail Decoration -->
+        <service id="optivo_broadmail.proxy.templatemail_factory"
+                 class="OptivoBroadmail\Proxy\TemplateMailFactory"
+                 decorates="templatemail_factory"
+                 public="true">
+        </service>
+        <service id="optivo_broadmail.mail.templatemailproxy"
+                 class="OptivoBroadmail\Proxy\TemplateMailProxy"
+                 decorates="templatemail"
+                 public="true">
+                 <factory service="templatemail_factory" method="factory" />
+                 <argument type="service" id="service_container"/>
+        </service>
+        <!-- Optivo Broadmail handler for logger-->
+        <service id="optivo_broadmail.handler" class="Monolog\Handler\RotatingFileHandler">
+            <argument>%kernel.logs_dir%/broadmail_%kernel.environment%.log</argument>
+            <argument>0</argument>
+            <!-- For increased log verbosity comment the argument below -->
+            <!-- <argument>%monolog.logger.constant.info%</argument> -->
+            <call method="pushProcessor">
+                <argument type="service" id="monolog.processor.uid" />
+            </call>
+        </service>
+
+        <!-- Optivo Broadmail logger -->
+        <service id="optivo_broadmail.logger" class="Shopware\Components\Logger">
+            <argument>broadmail</argument>
+            <call method="pushHandler">
+                <argument type="service" id="optivo_broadmail.handler" />
+            </call>
+        </service>
+    </services>
+</container>

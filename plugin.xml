@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/plugin.xsd">
+    <label lang="en">Episerver Campaign</label>
+    <label lang="de">Episerver Campaign</label>
+
+    <version>1.5.1</version>
+    <copyright>(c) by Episerver GmbH</copyright>
+    <link>https://www.episerver.de/</link>
+    <author>Episerver GmbH</author>
+    <compatibility minVersion="5.6.4" />
+
+    <changelog version="1.0.0">
+        <changes lang="de">Veröffentlichung</changes>
+        <changes lang="en">Release</changes>
+    </changelog>
+    <changelog version="1.2.0">
+        <changes lang="de">Stabilitäts- und Performance-Verbesserungen.</changes>
+        <changes lang="en">Stability and performance improvements.</changes>
+    </changelog>
+    <changelog version="1.3.0">
+        <changes lang="de">Verbesserte Stabilität, Unterstützung für Version
+          5.4 von Shopware, Teile auf Episerver Campaign umgestellt,
+          AddressService für das update von Adressdaten ergänzt. Die Anrede
+          wird nun als mr und ms übergeben und nicht übersetzt. Alte
+          Bibliotheken entfernt.
+        </changes>
+        <changes lang="en">Stability improvements, support for Shopware
+          version 5.4, partly rebranded to Episerver Campaign,
+          AddressService decorated to submit changes to Episerver Campaign.
+          Salutation: use Shopware defaults (mr, ms) instead of translated
+          versions. Removed old libraries.
+        </changes>
+    </changelog>
+    <changelog version="1.3.1">
+        <changes lang="de">Kleinere Fehler behoben.</changes>
+        <changes lang="en">Small bugfixes.</changes>
+    </changelog>
+    <changelog version="1.3.2">
+        <changes lang="de">fix for null handling bei Attributen</changes>
+        <changes lang="en">added null handling for attributes</changes>
+    </changelog>
+    <changelog version="1.4.0">
+        <changes lang="de">Update Version for Shopware 5.6</changes>
+        <changes lang="en">Update Version for Shopawre 5.6</changes>
+    </changelog>
+    <changelog version="1.4.2">
+        <changes lang="de">Kleinere Fehler behoben und Release für Shopware 5.5</changes>
+        <changes lang="en">Smaller bug fixes and Release for Shopware 5.5</changes>
+    </changelog>
+    <changelog version="1.4.3">
+        <changes lang="de">Neue Funktion: Confirmed Opt-Ins hinzugefügt</changes>
+        <changes lang="en">Added feature: Confirmed Opt-Ins</changes>
+    </changelog>
+    <changelog version="1.4.4">
+        <changes lang="de">Fehler im Registrierungsprozess behoben</changes>
+        <changes lang="en">Fixed error in registration process</changes>
+    </changelog>
+    <changelog version="1.5.0">
+        <changes lang="de">Update Version for Shopware 5.7</changes>
+        <changes lang="en">Update Version for Shopawre 5.7</changes>
+    </changelog>
+	<changelog version="1.5.1">
+        <changes lang="de">BugFix: Es wurde ein Fehler behoben, welcher dafür sorgte, dass das Geburtsdatum eines Shopkunden nicht an Optimizely Campaign übermittelt wurde.</changes>
+		<changes lang="en">BugFix: Fixed a bug that caused a store customer's date of birth not to be submitted to Optimizely Campaign.</changes>
+    </changelog>
+</plugin>

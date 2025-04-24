@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cronjobs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.3/engine/Shopware/Components/Plugin/schema/cronjob.xsd">
+
+    <cronjob>
+        <name>Episerver Product Export</name>
+        <action>Shopware_CronJob_EpiProductExport</action>
+        <active>true</active>
+        <interval>86400</interval>
+        <disableOnError>true</disableOnError>
+    </cronjob>
+
+    <cronjob>
+        <name>Episerver Error Handler</name>
+        <action>Shopware_CronJob_EpiErrorHandler</action>
+        <active>true</active>
+        <interval>60</interval>
+        <disableOnError>true</disableOnError>
+    </cronjob>
+
+</cronjobs>

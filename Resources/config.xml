@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/shopware/5.2/engine/Shopware/Components/Plugin/schema/config.xsd">
+    <elements>
+        <!-- product export -->
+        <element scope="shop" required="true" type="boolean">
+            <name>runExport</name>
+            <label lang="de">Produktexport</label>
+            <label lang="en">Product export</label>
+            <value>1/</value>
+        </element>
+        <!-- export name -->
+        <element scope="shop" required="false" type="text">
+            <name>exportName</name>
+            <label lang="de">Export Name</label>
+            <label lang="en">Export Name</label>
+            <value>product.csv</value>
+        </element>
+        <!-- export link -->
+        <element scope="shop" required="true" type="text">
+            <name>exportLink</name>
+            <label lang="de">Produktexport Link</label>
+            <label lang="en">Product export link</label>
+        </element>
+        <!-- sftp username -->
+        <element scope="shop" required="true" type="text">
+            <name>sftpUsername</name>
+            <label lang="de">SFTP Benutzername</label>
+            <label lang="en">SFTP Username</label>
+        </element>
+        <!-- sftp password -->
+        <element scope="shop" required="true" type="text">
+            <name>sftpPassword</name>
+            <label lang="de">SFTP Keyfile Passwort</label>
+            <label lang="en">SFTP keyfile password</label>
+        </element>
+        <!-- sftp private key -->
+        <element scope="shop" required="true" type="textarea">
+            <name>sftpPrivateKey</name>
+            <label lang="de">SFTP Private Keyfile</label>
+            <label lang="en">SFTP Private Keyfile</label>
+        </element>
+        <!-- optivo bmOptInId -->
+        <element scope="shop" required="true" type="text">
+            <name>optivoOptInId</name>
+            <label lang="de">Opt-In Id</label>
+            <label lang="en">Opt-In Id</label>
+            <description lang="de">der Wert dieses Feldes wird für den Double Opt-In Prozess verwendet. Bitte tragen Sie hier die entsprechende ID ein</description>
+            <description lang="en">This value will be used for the double opt-in process. Please enter a proper id</description>
+        </element>
+        <!-- optivo optivoAuthCode -->
+        <element scope="shop" required="true" type="text">
+            <name>optivoAuthCode</name>
+            <label lang="de">Autorisierungs-Code</label>
+            <label lang="en">Authorization Code</label>
+            <description lang="de">der Wert dieses Feldes wird für die An- und Abmeldung, sowie für die Änderung der Kundendaten verwendet</description>
+            <description lang="en">the authorization code is used for registration, logout and change of customer data</description>
+        </element>
+    </elements>
+</config>
